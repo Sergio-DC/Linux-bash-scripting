@@ -1,0 +1,1 @@
+stdout being redirected or piped
