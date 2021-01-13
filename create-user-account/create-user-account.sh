@@ -1,22 +1,26 @@
 #!/bin/bash
 
-#Add a new line in /etc/passwd file e.g.
-#user|pass|uid|gid|a custom msg|path to lodge user files|default bash
-#Important: if you don't want to set password in the account only leave empty the
-# password slot, if you don't want password write in passwd file set an x in password slot
-#, this technique is used to hide the encrypted the password
-carlos:x:1001:1000:EL chingon:/home/sergio:/bin/bash
+#Create a new user account with the most basic command, this includes:
+#  - Creating a new user in /etc/passwd
+#  - Creating a new group in /etc/group (The group has the same name as the user)
+#  - Creating a new home directory
+#  - Copying the /etc/skel files to home dir
 
-#Create a directory with the name of the user in /home/
-sudo mkdir /home/carlos
+sudo adduser carlos
 
-#Copy the files inside /etc/skel to /home/new-user
-sudo cp -r /etc/skel/. /home/carlos
+#Create a new user accout, this includes:
+#  - Creating a new user in /etc/passwd
+#  - Creating a new group in /etc/group (The group has the same name as the user)
+sudo useradd -M romero
 
-# Change the owner and group of the previous files
-sudo chown -R carlos:kali /home/carlos/.
 
-# If you want to attach a password to the account
-sudo passwd carlos
+#Create a new user accout specifying the UID and GID, this includes:
+#  - Creating a new user in /etc/passwd
+#  - Creating a new group in /etc/group (The group has the same name as the user)
 
-# Close the current session and swith to another user with the new account
+sudo useradd -u 1043 -g 1003 miyagi
+
+#Create a new user accout, this includes:
+#  - Creating a new user in /etc/passwd (The slot for the path to lodge user files will set be according to the argument next to -d flag
+#  - Creating a new group in /etc/group (The group has the same name as the user)
+sudo useradd -d /home/dummy carlos
